@@ -31,15 +31,23 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
 
   // Local MP3 file paths (assets)
   final List<String> _songs = [
-    'assets/music/Legends.mp3',  // Asset path for Legends
-    'assets/music/Misfit.mp3',   // Asset path for Misfit
-    'assets/music/Lucid_Dreams.mp3',  // Asset path for Lucid Dreams
+    'assets/music/Legends.mp3',
+    'assets/music/Misfit.mp3',
+    'assets/music/Lucid_Dreams.mp3',
   ];
 
+  // List of song titles
   final List<String> _songTitles = [
     'Juice WRLD - Legends',
     'Juice WRLD - Misfit',
     'Juice WRLD - Lucid Dreams',
+  ];
+
+  // Corresponding image paths
+  final List<String> _songImages = [
+    'assets/images/Legends.jpg',
+    'assets/images/Misfit.jpg',
+    'assets/images/Lucid_Dreams.jpg',
   ];
 
   @override
@@ -51,7 +59,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
   // Play the song by loading it from the assets folder
   void _playSong(int index) async {
     try {
-      await _audioPlayer.setAsset(_songs[index]);  // Load from assets
+      await _audioPlayer.setAsset(_songs[index]);
       _audioPlayer.play();
     } catch (e) {
       print('Error loading the song: $e');
@@ -100,6 +108,17 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
               ),
             ),
 
+            // Display the album cover image for the song
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Image.asset(
+                _songImages[_currentIndex],
+                height: 200,
+                width: 200,
+                fit: BoxFit.cover,
+              ),
+            ),
+
             // Song List
             Padding(
               padding: const EdgeInsets.only(top: 20),
@@ -142,7 +161,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                 onPressed: _playPrevious,
                 style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
-                  padding: EdgeInsets.all(1),
+                  padding: EdgeInsets.all(16),
                   backgroundColor: Colors.green.shade800, // Darker green for buttons
                   elevation: 5,
                 ),
@@ -160,7 +179,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      padding: EdgeInsets.all(1),
+                      padding: EdgeInsets.all(16),
                       backgroundColor: Colors.green.shade800, // Darker green for buttons
                       elevation: 5,
                     ),
@@ -174,7 +193,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                 onPressed: _playNext,
                 style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
-                  padding: EdgeInsets.all(1),
+                  padding: EdgeInsets.all(16),
                   backgroundColor: Colors.green.shade800, // Darker green for buttons
                   elevation: 5,
                 ),
